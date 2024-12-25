@@ -1,0 +1,79 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Ed | login</title>
+    <link rel="stylesheet" href="{%static 'login.css' %}">
+    <meta name="google-signin-client_id" content="207548682797-f88ei21cdiar31nqjj6s1didl8286so0apps.googleusercontent.com">
+
+</head>
+<body>
+<h2></h2><br>
+    <div class="signup-container">
+        <h2 style="font-size: 16px; font-weight: 400;">Make your <b>Teaching</b> and</b> <b>Learning</b> Easier with <b>Easy Ed</b></h2>
+<form action="slogin" method="POST">
+  {% csrf_token %}
+  
+    <div class="input-group">
+        <label for="fullname">Username:</label>
+        <input type="text" id="fullname" name="name" placeholder="Create a Username" required>
+    </div>
+    <div class="input-group">
+      <label for="fullname">Email:</label>
+      <input type="text" id="fullname" name="mail" placeholder="Enter Email" required>
+  </div>
+    <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="passwd" placeholder="Enter your password" required>
+    </div>
+  
+    <button type="submit" class="submit-btn"> Login </button>
+</form>
+<script>
+    function closei(){
+      k = document.getElementById('message');
+      k.style.display = 'none';
+
+    
+    }
+sleep(3000);
+closei(); 
+</script>
+<!-- note: google Auth -->
+<div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    function onGoogleSignIn(credentialResponse) {
+      console.log('Encoded JWT ID token: ' + credentialResponse.credential);
+    }
+  
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: "207548682797-f88ei21cdiar31nqjj6s1didl8286so0.apps.googleusercontent.com",
+        callback: onGoogleSignIn,
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" } // Customization options
+      );
+      google.accounts.id.prompt(); // Automatically prompts the user
+    };
+  </script>
+<script>
+gapi.load('auth2', function() {
+  gapi.auth2.init();
+});
+</script>
+<br/>    
+
+<div id="buttonDiv">
+</div>
+</div>
+<a id="tologin" href="signin">Don't have any accounts</a>
+
+</div>
+
+</body>
+</html>
